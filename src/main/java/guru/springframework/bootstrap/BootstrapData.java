@@ -31,8 +31,57 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
+        //saveData();
         recipeRepository.saveAll(loadData());
         log.debug("loading bootstrap data");
+    }
+
+    private void saveData(){
+//        INSERT INTO category (description) VALUES ('American');
+
+        Category categoryAmerican = new Category();
+        categoryAmerican.setDescription("American");
+        categoryRepository.save(categoryAmerican);
+
+        Category categoryItalian = new Category();
+        categoryItalian.setDescription("Italian");
+        categoryRepository.save(categoryItalian);
+
+        Category categoryMexican = new Category();
+        categoryMexican.setDescription("Mexican");
+        categoryRepository.save(categoryMexican);
+
+        Category categoryFastFood = new Category();
+        categoryFastFood.setDescription("Fast Food");
+        categoryRepository.save(categoryFastFood);
+
+        UnitOfMeasure uomTeaspoon = new UnitOfMeasure();
+        uomTeaspoon.setDescription("Teaspoon");
+        unitOfMeasureRepository.save(uomTeaspoon);
+
+        UnitOfMeasure uomTablespoon = new UnitOfMeasure();
+        uomTablespoon.setDescription("Tablespoon");
+        unitOfMeasureRepository.save(uomTablespoon);
+
+        UnitOfMeasure uomCup = new UnitOfMeasure();
+        uomCup.setDescription("Cup");
+        unitOfMeasureRepository.save(uomCup);
+
+        UnitOfMeasure uomPinch = new UnitOfMeasure();
+        uomPinch.setDescription("Pinch");
+        unitOfMeasureRepository.save(uomPinch);
+
+        UnitOfMeasure uomOunce = new UnitOfMeasure();
+        uomOunce.setDescription("Ounce");
+        unitOfMeasureRepository.save(uomOunce);
+
+        UnitOfMeasure uomClove = new UnitOfMeasure();
+        uomClove.setDescription("Clove");
+        unitOfMeasureRepository.save(uomClove);
+
+        UnitOfMeasure uomPint = new UnitOfMeasure();
+        uomPint.setDescription("Pint");
+        unitOfMeasureRepository.save(uomPint);
     }
 
     private List<Recipe> loadData() {
