@@ -53,6 +53,13 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 
+<!--		MySQL Driver-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+<!--			<version></version> DO NOT ADD VERSION, INHEARITED FROM SPRING BOOT POM -->
+		</dependency>
+
 <!--		Web jars-->
 		<dependency>
 			<groupId>org.webjars</groupId>
