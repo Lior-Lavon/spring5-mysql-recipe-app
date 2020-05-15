@@ -6,23 +6,26 @@ import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Component
-public class BootstrapData implements ApplicationListener<ContextRefreshedEvent> {
+@Profile({"dev", "prod"}) // Active only for the dev | prod profile
+public class BootstrapDataSQL implements ApplicationListener<ContextRefreshedEvent> {
 
     private RecipeRepository recipeRepository;
     private CategoryRepository categoryRepository;
     private UnitOfMeasureRepository unitOfMeasureRepository;
 
-    public BootstrapData(RecipeRepository recipeRepository, CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
+    public BootstrapDataSQL(RecipeRepository recipeRepository, CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
         this.recipeRepository = recipeRepository;
         this.categoryRepository = categoryRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
@@ -31,57 +34,67 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
-        //saveData();
-        recipeRepository.saveAll(loadData());
+        loadCategoryData();
+        loadMOUData();
+        Optional<Recipe> optionalRecipe = recipeRepository.findByDescription("Perfect Guacamole");
+        if(!optionalRecipe.isPresent())
+            recipeRepository.saveAll(loadData());
         log.debug("loading bootstrap data");
     }
 
-    private void saveData(){
-//        INSERT INTO category (description) VALUES ('American');
+    private void loadCategoryData(){
+        Optional<Category> optionalCategory= categoryRepository.findByDescription("American");
+        if(!optionalCategory.isPresent()){
+            Category categoryAmerican = new Category();
+            categoryAmerican.setDescription("American");
+            categoryRepository.save(categoryAmerican);
 
-        Category categoryAmerican = new Category();
-        categoryAmerican.setDescription("American");
-        categoryRepository.save(categoryAmerican);
+            Category categoryItalian = new Category();
+            categoryItalian.setDescription("Italian");
+            categoryRepository.save(categoryItalian);
 
-        Category categoryItalian = new Category();
-        categoryItalian.setDescription("Italian");
-        categoryRepository.save(categoryItalian);
+            Category categoryMexican = new Category();
+            categoryMexican.setDescription("Mexican");
+            categoryRepository.save(categoryMexican);
 
-        Category categoryMexican = new Category();
-        categoryMexican.setDescription("Mexican");
-        categoryRepository.save(categoryMexican);
+            Category categoryFastFood = new Category();
+            categoryFastFood.setDescription("Fast Food");
+            categoryRepository.save(categoryFastFood);
+        }
+    }
 
-        Category categoryFastFood = new Category();
-        categoryFastFood.setDescription("Fast Food");
-        categoryRepository.save(categoryFastFood);
+    private void loadMOUData(){
 
-        UnitOfMeasure uomTeaspoon = new UnitOfMeasure();
-        uomTeaspoon.setDescription("Teaspoon");
-        unitOfMeasureRepository.save(uomTeaspoon);
+        Optional<UnitOfMeasure> optionalUnitOfMeasure = unitOfMeasureRepository.findByDescription("Teaspoon");
+        if(!optionalUnitOfMeasure.isPresent()){
+            UnitOfMeasure uomTeaspoon = new UnitOfMeasure();
+            uomTeaspoon.setDescription("Teaspoon");
+            unitOfMeasureRepository.save(uomTeaspoon);
 
-        UnitOfMeasure uomTablespoon = new UnitOfMeasure();
-        uomTablespoon.setDescription("Tablespoon");
-        unitOfMeasureRepository.save(uomTablespoon);
+            UnitOfMeasure uomTablespoon = new UnitOfMeasure();
+            uomTablespoon.setDescription("Tablespoon");
+            unitOfMeasureRepository.save(uomTablespoon);
 
-        UnitOfMeasure uomCup = new UnitOfMeasure();
-        uomCup.setDescription("Cup");
-        unitOfMeasureRepository.save(uomCup);
+            UnitOfMeasure uomCup = new UnitOfMeasure();
+            uomCup.setDescription("Cup");
+            unitOfMeasureRepository.save(uomCup);
 
-        UnitOfMeasure uomPinch = new UnitOfMeasure();
-        uomPinch.setDescription("Pinch");
-        unitOfMeasureRepository.save(uomPinch);
+            UnitOfMeasure uomPinch = new UnitOfMeasure();
+            uomPinch.setDescription("Pinch");
+            unitOfMeasureRepository.save(uomPinch);
 
-        UnitOfMeasure uomOunce = new UnitOfMeasure();
-        uomOunce.setDescription("Ounce");
-        unitOfMeasureRepository.save(uomOunce);
+            UnitOfMeasure uomOunce = new UnitOfMeasure();
+            uomOunce.setDescription("Ounce");
+            unitOfMeasureRepository.save(uomOunce);
 
-        UnitOfMeasure uomClove = new UnitOfMeasure();
-        uomClove.setDescription("Clove");
-        unitOfMeasureRepository.save(uomClove);
+            UnitOfMeasure uomClove = new UnitOfMeasure();
+            uomClove.setDescription("Clove");
+            unitOfMeasureRepository.save(uomClove);
 
-        UnitOfMeasure uomPint = new UnitOfMeasure();
-        uomPint.setDescription("Pint");
-        unitOfMeasureRepository.save(uomPint);
+            UnitOfMeasure uomPint = new UnitOfMeasure();
+            uomPint.setDescription("Pint");
+            unitOfMeasureRepository.save(uomPint);
+        }
     }
 
     private List<Recipe> loadData() {
@@ -150,7 +163,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         UnitOfMeasure pint = uomPint.get();
 
         Recipe perfectGuacamole = new Recipe();
-        perfectGuacamole.setDescription("How to Make Perfect Guacamole");
+        perfectGuacamole.setDescription("Perfect Guacamole");
         perfectGuacamole.setPrepTime(10);
         perfectGuacamole.setCookTime(10);
         perfectGuacamole.setServings(4);

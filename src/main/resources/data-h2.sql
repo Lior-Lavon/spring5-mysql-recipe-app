@@ -1,3 +1,4 @@
+-- This data will be run only for the default/h2 configuration
 INSERT INTO category (description) VALUES ('American');
 INSERT INTO category (description) VALUES ('Italian');
 INSERT INTO category (description) VALUES ('Mexican');
