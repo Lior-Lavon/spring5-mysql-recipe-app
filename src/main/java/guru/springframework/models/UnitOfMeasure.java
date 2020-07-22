@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-public class UnitOfMeasure extends BaseEntity{
+public class UnitOfMeasure extends BaseEntity {
 
     private String description; // Unit Of Measure
 

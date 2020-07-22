@@ -16,7 +16,7 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
-public class RecipeCommand extends BaseEntity{
+public class RecipeCommand extends BaseEntity {
 
     @NotBlank
     @Size(min = 3, max = 225) // number of char

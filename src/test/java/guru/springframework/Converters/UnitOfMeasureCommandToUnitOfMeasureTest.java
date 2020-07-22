@@ -21,12 +21,12 @@ public class UnitOfMeasureCommandToUnitOfMeasureTest {
     }
 
     @Test
-    public void testNullParameter(){
+    public void testNullParameter() {
         assertNull(unitOfMeasureCommandToUnitOfMeasure.convert(null));
     }
 
     @Test
-    public void testEmptyObject(){
+    public void testEmptyObject() {
         assertNotNull(unitOfMeasureCommandToUnitOfMeasure.convert(new UnitOfMeasureCommand()));
     }
 
@@ -45,7 +45,6 @@ public class UnitOfMeasureCommandToUnitOfMeasureTest {
         assertNotNull(uom);
         assertEquals(ID, uom.getId());
         assertEquals(DESCRIPTION, uom.getDescription());
-
 
 
     }

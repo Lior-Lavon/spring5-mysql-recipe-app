@@ -1,10 +1,11 @@
-
 -- run mysql in a docker file
 -- docker run -p 3306:3306 --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -v [pwd-mount-dir]:/var/lib/mysql -d mysql:5.7
 
 -- Create Databases
-CREATE DATABASE sfg_dev;
-CREATE DATABASE sfg_prod;
+CREATE
+DATABASE sfg_dev;
+CREATE
+DATABASE sfg_prod;
 
 -- Create database service accounts
 CREATE USER 'sfg_dev_user'@'localhost' IDENTIFIED BY 'password';

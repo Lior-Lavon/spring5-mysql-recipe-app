@@ -38,7 +38,7 @@ public class IngredientServiceImpl implements IngredientService {
     public IngredientCommand findByRecipeIdAndIngredientId(Long recipeId, Long ingredientId) {
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
-        if(!recipeOptional.isPresent()){
+        if (!recipeOptional.isPresent()) {
             // ToDo
             throw new NotFoundException("Recipe not found");
         }
@@ -56,7 +56,7 @@ public class IngredientServiceImpl implements IngredientService {
 
         // 4
         Optional<Ingredient> optionalIngredient = filter.findFirst();
-        if(!optionalIngredient.isPresent()){
+        if (!optionalIngredient.isPresent()) {
             // ToDo
             throw new NotFoundException("Ingredient not found");
         }
@@ -71,7 +71,7 @@ public class IngredientServiceImpl implements IngredientService {
     public IngredientCommand saveIngredientCommand(IngredientCommand command) {
 
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
-        if(!recipeOptional.isPresent()){
+        if (!recipeOptional.isPresent()) {
             // ToDo
             log.error("Recipe not found for id: " + command.getRecipeId());
             throw new NotFoundException("Recipe not found");
@@ -84,7 +84,7 @@ public class IngredientServiceImpl implements IngredientService {
             Optional<Ingredient> ingredientOptional = recipe.getIngredients().stream()
                     .filter(ingredient1 -> ingredient1.getId().equals(command.getId()))
                     .findFirst();
-            if(ingredientOptional.isPresent()){
+            if (ingredientOptional.isPresent()) {
                 // update
 
                 Ingredient foundIngredient = ingredientOptional.get();
@@ -110,7 +110,7 @@ public class IngredientServiceImpl implements IngredientService {
                     .filter(ingredient -> ingredient.getAmount().equals(command.getAmount()))
                     .filter(ingredient -> ingredient.getUom().getId().equals(command.getUom().getId()))
                     .findFirst();
-            if(!savedIngredientOptional.isPresent()){
+            if (!savedIngredientOptional.isPresent()) {
                 // ToDo
                 log.error("Ingredient not found for id: " + command.getRecipeId());
                 throw new NotFoundException("Recipe not found");
@@ -126,7 +126,7 @@ public class IngredientServiceImpl implements IngredientService {
         log.debug("delete ingredient :" + ingredientId);
 
         Optional<Recipe> optionalRecipe = recipeRepository.findById(recipeId);
-        if(!optionalRecipe.isPresent()){
+        if (!optionalRecipe.isPresent()) {
             // todo
             throw new NotFoundException("recipe not found by recipeId :" + recipeId);
         }
@@ -138,7 +138,7 @@ public class IngredientServiceImpl implements IngredientService {
                 .filter(ingredient -> ingredient.getId().equals(ingredientId))
                 .findFirst();
 
-        if(!optionalIngredient.isPresent()){
+        if (!optionalIngredient.isPresent()) {
             // todo
             log.error("Ingredient not found id:" + ingredientId);
             throw new NotFoundException("Ingredient not found id:" + ingredientId);

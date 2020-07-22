@@ -27,12 +27,12 @@ public class IngredientCommandToIngredientTest {
     }
 
     @Test
-    public void testNullParam(){
+    public void testNullParam() {
         assertNull(ingredientCommandToIngredient.convert(null));
     }
 
     @Test
-    public void testWithObject(){
+    public void testWithObject() {
         assertNotNull(ingredientCommandToIngredient.convert(new IngredientCommand()));
     }
 
@@ -62,7 +62,7 @@ public class IngredientCommandToIngredientTest {
     }
 
     @Test
-    public void convertWithNullUOM(){
+    public void convertWithNullUOM() {
         IngredientCommand ingredientCommand = new IngredientCommand();
         ingredientCommand.setId(ID);
         ingredientCommand.setDescription(DESCRIPTION);

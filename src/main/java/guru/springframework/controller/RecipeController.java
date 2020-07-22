@@ -26,7 +26,7 @@ public class RecipeController {
     }
 
     @GetMapping("/recipe/{id}/show")
-    public String showById(Model model, @PathVariable String id){
+    public String showById(Model model, @PathVariable String id) {
 
         Recipe recipe = recipeService.findById(Long.valueOf(id));
         model.addAttribute("recipe", recipe);
@@ -36,7 +36,7 @@ public class RecipeController {
 
     // load an empty recipe form for creat
     @GetMapping("/recipe/new")
-    public String loadNewRecipeForm(Model model){
+    public String loadNewRecipeForm(Model model) {
 
         model.addAttribute("recipe", new RecipeCommand());
 
@@ -45,7 +45,7 @@ public class RecipeController {
 
     // load a filed form with recipe
     @GetMapping("/recipe/{id}/update")
-    public String loadFiledRecipeFormForUpdate(Model model, @PathVariable String id){
+    public String loadFiledRecipeFormForUpdate(Model model, @PathVariable String id) {
         RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(id));
 
         model.addAttribute("recipe", recipeCommand);
@@ -55,10 +55,10 @@ public class RecipeController {
 
     // handle the post
     @PostMapping("/recipe")
-    public String saveOrUpdate(@Valid @ModelAttribute("recipe") RecipeCommand command, BindingResult bindingResult){
+    public String saveOrUpdate(@Valid @ModelAttribute("recipe") RecipeCommand command, BindingResult bindingResult) {
 
         // BindingResult holds validation result
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(objectError -> {
                 log.error(objectError.toString());
             });
@@ -73,7 +73,7 @@ public class RecipeController {
     }
 
     @GetMapping("/recipe/{id}/delete")
-    public String deleteRecipe(@PathVariable String id){
+    public String deleteRecipe(@PathVariable String id) {
         log.debug("deleteRecipe :" + id);
 
         recipeService.deleteById(Long.valueOf(id));
@@ -84,7 +84,7 @@ public class RecipeController {
     // Exception Handler using the NotFoundException exception class
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
-    public ModelAndView HandleNotFound(Exception exception){
+    public ModelAndView HandleNotFound(Exception exception) {
 
         log.error("Handling not found exception");
         log.error(exception.getMessage());

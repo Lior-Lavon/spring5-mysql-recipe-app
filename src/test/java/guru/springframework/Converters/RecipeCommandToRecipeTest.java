@@ -38,12 +38,12 @@ public class RecipeCommandToRecipeTest {
     }
 
     @Test
-    public void testWithNull(){
+    public void testWithNull() {
         assertNull(recipeCommandToRecipe.convert(null));
     }
 
     @Test
-    public void testWithObject(){
+    public void testWithObject() {
         assertNotNull(recipeCommandToRecipe.convert(new RecipeCommand()));
     }
 

@@ -80,13 +80,13 @@ public class IngredientServiceImplTest {
 
         // then
         assertNotNull(ingredientCommand);
-        assertEquals(Long.valueOf(2L) , ingredientCommand.getId());
-        assertEquals(Long.valueOf(1L) , ingredientCommand.getRecipeId());
+        assertEquals(Long.valueOf(2L), ingredientCommand.getId());
+        assertEquals(Long.valueOf(1L), ingredientCommand.getRecipeId());
         verify(recipeRepository, times(1)).findById(anyLong());
     }
 
     @Test
-    public void testSaveIngredientCommand(){
+    public void testSaveIngredientCommand() {
 
         // Recipe
         Recipe recipe = new Recipe();
@@ -125,10 +125,10 @@ public class IngredientServiceImplTest {
     }
 
     @Test
-    public void testDeleteById(){
+    public void testDeleteById() {
 
         // given
-        Recipe recipe= new Recipe();
+        Recipe recipe = new Recipe();
         recipe.setId(1L);
 
         Ingredient ing1 = new Ingredient();

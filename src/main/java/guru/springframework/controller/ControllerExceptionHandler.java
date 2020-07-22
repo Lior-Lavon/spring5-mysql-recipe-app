@@ -18,7 +18,7 @@ public class ControllerExceptionHandler {
     // Global Exception Handler using the NotFoundException exception class
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(NumberFormatException.class)
-    public ModelAndView HandleNumberFormat(Exception exception){
+    public ModelAndView HandleNumberFormat(Exception exception) {
 
         log.error("Handling Number Format exception");
         log.error(exception.getMessage());

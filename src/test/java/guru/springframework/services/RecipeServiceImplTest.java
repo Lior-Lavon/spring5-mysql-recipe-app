@@ -76,7 +76,7 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void deleteRecipe(){
+    public void deleteRecipe() {
 
         // given
         Long id = 1L;
@@ -92,7 +92,7 @@ public class RecipeServiceImplTest {
     // Test exception for not found
 
     @Test(expected = NotFoundException.class)
-    public void getRecipeByIdTestNotFound(){
+    public void getRecipeByIdTestNotFound() {
 
         Optional<Recipe> recipeOptional = Optional.empty();
 

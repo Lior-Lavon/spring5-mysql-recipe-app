@@ -96,9 +96,9 @@ public class ImageControllerTest {
         String s = "fake image text";
         Byte[] bytesBox = new Byte[s.getBytes().length];
 
-        int i=0;
+        int i = 0;
 
-        for( byte primeByte : s.getBytes()){
+        for (byte primeByte : s.getBytes()) {
             bytesBox[i++] = primeByte;
         }
 

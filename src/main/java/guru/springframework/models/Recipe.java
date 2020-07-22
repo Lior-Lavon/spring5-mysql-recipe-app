@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Entity
-public class Recipe extends BaseEntity{
+public class Recipe extends BaseEntity {
 
     private String description;
     private Integer prepTime;
@@ -30,9 +30,9 @@ public class Recipe extends BaseEntity{
     private Difficulty difficulty;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable( name = "recipe_category",
-                joinColumns = @JoinColumn(name = "recipe_id"),
-                inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @JoinTable(name = "recipe_category",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     // Map: One Recipe -> Many Ingredient, While the Recipe owns the Ingredient entity
@@ -50,7 +50,7 @@ public class Recipe extends BaseEntity{
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes; // 1-1
 
-    public void addIngredient(Ingredient ingredient){
+    public void addIngredient(Ingredient ingredient) {
         ingredient.setRecipe(this);
         this.ingredients.add(ingredient);
     }

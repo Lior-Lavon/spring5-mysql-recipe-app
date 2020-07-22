@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class UnitOfMeasureCommand extends BaseEntity{
+public class UnitOfMeasureCommand extends BaseEntity {
     private String description;
 }

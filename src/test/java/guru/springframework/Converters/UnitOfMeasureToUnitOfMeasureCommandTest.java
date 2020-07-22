@@ -20,12 +20,12 @@ public class UnitOfMeasureToUnitOfMeasureCommandTest {
     }
 
     @Test
-    public void testNullParam(){
+    public void testNullParam() {
         assertNull(unitOfMeasureToUnitOfMeasureCommand.convert(null));
     }
 
     @Test
-    public void testEmptyObject(){
+    public void testEmptyObject() {
         assertNotNull(unitOfMeasureToUnitOfMeasureCommand.convert(new UnitOfMeasure()));
     }
 

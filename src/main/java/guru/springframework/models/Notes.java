@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 //@EqualsAndHashCode(exclude = {"recipe"})
 @EqualsAndHashCode(callSuper = false)
 @Entity
-public class Notes extends BaseEntity{
+public class Notes extends BaseEntity {
 
     @OneToOne // leave empty so the Recipe entity will own this object
     private Recipe recipe; // 1-1

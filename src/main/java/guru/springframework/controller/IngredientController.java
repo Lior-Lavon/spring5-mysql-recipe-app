@@ -28,7 +28,7 @@ public class IngredientController {
     }
 
     @GetMapping("/recipe/{recipeId}/ingredients")
-    public String getIngredientList(Model model, @PathVariable String recipeId){
+    public String getIngredientList(Model model, @PathVariable String recipeId) {
 
         log.debug("Getting Ingredients for RecipeId : " + recipeId);
 
@@ -38,7 +38,7 @@ public class IngredientController {
     }
 
     @GetMapping("/recipe/{recipeId}/ingredient/{ingredientId}/show")
-    public String getByRecipeIdAndIngredientId(Model model, @PathVariable String recipeId, @PathVariable String ingredientId){
+    public String getByRecipeIdAndIngredientId(Model model, @PathVariable String recipeId, @PathVariable String ingredientId) {
 
         log.debug("Getting Ingredient for ingredientId :" + ingredientId + " for RecipeId : " + recipeId);
 
@@ -49,7 +49,7 @@ public class IngredientController {
     }
 
     @GetMapping("/recipe/{recipeId}/ingredient/{ingredientId}/update")
-    public String updateRecipeIngredient(Model model, @PathVariable String recipeId, @PathVariable String ingredientId){
+    public String updateRecipeIngredient(Model model, @PathVariable String recipeId, @PathVariable String ingredientId) {
 
         IngredientCommand ingredientCommand = ingredientService.findByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(ingredientId));
         model.addAttribute("ingredient", ingredientCommand);
@@ -60,10 +60,10 @@ public class IngredientController {
     }
 
     @GetMapping("/recipe/{recipeId}/ingredient/new")
-    public String newIngredient(Model model, @PathVariable String recipeId){
+    public String newIngredient(Model model, @PathVariable String recipeId) {
 
         RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
-        if(recipeCommand==null){
+        if (recipeCommand == null) {
             // ToDo
             log.error("recipe not found for id " + recipeId);
             throw new RuntimeException("recipe not found for id " + recipeId);
@@ -80,7 +80,7 @@ public class IngredientController {
     }
 
     @PostMapping("/recipe/{recipeId}/ingredient/{ingredientId}/delete")
-    public String deleteIngredient(@PathVariable String recipeId, @PathVariable String ingredientId){
+    public String deleteIngredient(@PathVariable String recipeId, @PathVariable String ingredientId) {
 
         ingredientService.deleteById(Long.valueOf(recipeId), Long.valueOf(ingredientId));
 
@@ -88,7 +88,7 @@ public class IngredientController {
     }
 
     @PostMapping("/recipe/{recipeId}/ingredient")
-    public String saveOrUpdate(@PathVariable String recipeId, IngredientCommand ingredientCommand){
+    public String saveOrUpdate(@PathVariable String recipeId, IngredientCommand ingredientCommand) {
 
         ingredientService.saveIngredientCommand(ingredientCommand);
 

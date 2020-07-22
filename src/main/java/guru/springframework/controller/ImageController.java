@@ -30,7 +30,7 @@ public class ImageController {
 
     // send the image upload form
     @GetMapping("/recipe/{id}/image")
-    public String showUploadForm(Model model, @PathVariable String id){
+    public String showUploadForm(Model model, @PathVariable String id) {
 
         RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(id));
         model.addAttribute("recipe", recipeCommand);
@@ -40,7 +40,7 @@ public class ImageController {
 
     // handle the post of an image
     @PostMapping("/recipe/{id}/image")
-    public String imagePost(@PathVariable String id, @RequestParam("imagefile") MultipartFile file){
+    public String imagePost(@PathVariable String id, @RequestParam("imagefile") MultipartFile file) {
 
         imageService.saveImageFile(Long.valueOf(id), file);
 
@@ -54,12 +54,12 @@ public class ImageController {
         RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(id));
 
         // copy the image from Recipe to byteArray
-        if(recipeCommand.getImage()!=null){
+        if (recipeCommand.getImage() != null) {
             byte[] byteArray = new byte[recipeCommand.getImage().length];
 
-            int i=0;
+            int i = 0;
 
-            for(Byte wrappedByte : recipeCommand.getImage()){
+            for (Byte wrappedByte : recipeCommand.getImage()) {
                 byteArray[i++] = wrappedByte;
             }
 

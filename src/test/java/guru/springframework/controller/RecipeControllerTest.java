@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -57,7 +58,7 @@ public class RecipeControllerTest {
 
     // test a Not Found exception
     @Test
-    public void testGetRecipeNotFound() throws Exception{
+    public void testGetRecipeNotFound() throws Exception {
 
         when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
 
@@ -67,7 +68,7 @@ public class RecipeControllerTest {
     }
 
     @Test
-    public void testGetRecipeNumberFormatException() throws Exception{
+    public void testGetRecipeNumberFormatException() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/recipe/aaa/show"))
                 .andExpect(status().isBadRequest())
@@ -93,10 +94,10 @@ public class RecipeControllerTest {
         when(recipeService.saveRecipeCommand(any())).thenReturn(recipeCommand);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/recipe")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)    // mimic a form post
-                .param("id", "")                        // mimic an empty string
-                .param("description", "some string")
-                .param("directions", "some string")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)    // mimic a form post
+                        .param("id", "")                        // mimic an empty string
+                        .param("description", "some string")
+                        .param("directions", "some string")
 //                .param("url", "lior@leaplines.com")
         )   // some description
                 .andExpect(status().is3xxRedirection()) // expect 3-2 status of redirection

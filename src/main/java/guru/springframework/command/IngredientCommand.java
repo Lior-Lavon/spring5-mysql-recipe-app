@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-public class IngredientCommand extends BaseEntity{
+public class IngredientCommand extends BaseEntity {
 
     private String description;
     private BigDecimal amount;

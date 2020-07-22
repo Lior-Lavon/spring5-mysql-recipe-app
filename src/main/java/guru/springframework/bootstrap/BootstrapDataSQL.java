@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Slf4j
 @Component
-@Profile({"dev", "prod"}) // Active only for the dev | prod profile
+@Profile({"dev", "prod", "mysql"}) // Active only for the dev | prod profile
 public class BootstrapDataSQL implements ApplicationListener<ContextRefreshedEvent> {
 
     private RecipeRepository recipeRepository;
@@ -37,14 +37,14 @@ public class BootstrapDataSQL implements ApplicationListener<ContextRefreshedEve
         loadCategoryData();
         loadMOUData();
         Optional<Recipe> optionalRecipe = recipeRepository.findByDescription("Perfect Guacamole");
-        if(!optionalRecipe.isPresent())
+        if (!optionalRecipe.isPresent())
             recipeRepository.saveAll(loadData());
         log.debug("loading bootstrap data");
     }
 
-    private void loadCategoryData(){
-        Optional<Category> optionalCategory= categoryRepository.findByDescription("American");
-        if(!optionalCategory.isPresent()){
+    private void loadCategoryData() {
+        Optional<Category> optionalCategory = categoryRepository.findByDescription("American");
+        if (!optionalCategory.isPresent()) {
             Category categoryAmerican = new Category();
             categoryAmerican.setDescription("American");
             categoryRepository.save(categoryAmerican);
@@ -63,10 +63,10 @@ public class BootstrapDataSQL implements ApplicationListener<ContextRefreshedEve
         }
     }
 
-    private void loadMOUData(){
+    private void loadMOUData() {
 
         Optional<UnitOfMeasure> optionalUnitOfMeasure = unitOfMeasureRepository.findByDescription("Teaspoon");
-        if(!optionalUnitOfMeasure.isPresent()){
+        if (!optionalUnitOfMeasure.isPresent()) {
             UnitOfMeasure uomTeaspoon = new UnitOfMeasure();
             uomTeaspoon.setDescription("Teaspoon");
             unitOfMeasureRepository.save(uomTeaspoon);
@@ -105,19 +105,19 @@ public class BootstrapDataSQL implements ApplicationListener<ContextRefreshedEve
 
 //        load Category
         Optional<Category> catAmerican = categoryRepository.findByDescription("American");
-        if(!catAmerican.isPresent())
+        if (!catAmerican.isPresent())
             throw new NotFoundException("American category not found");
 
         Optional<Category> catItalian = categoryRepository.findByDescription("Italian");
-        if(!catItalian.isPresent())
+        if (!catItalian.isPresent())
             throw new NotFoundException("Italian category not found");
 
         Optional<Category> catMexican = categoryRepository.findByDescription("Mexican");
-        if(!catMexican.isPresent())
+        if (!catMexican.isPresent())
             throw new NotFoundException("Mexican category not found");
 
         Optional<Category> catFastFood = categoryRepository.findByDescription("Fast Food");
-        if(!catFastFood.isPresent())
+        if (!catFastFood.isPresent())
             throw new NotFoundException("Fast Food category not found");
 
         Category americanCategory = catAmerican.get();
@@ -127,31 +127,31 @@ public class BootstrapDataSQL implements ApplicationListener<ContextRefreshedEve
 
         // load UOM
         Optional<UnitOfMeasure> uomTeaspoon = unitOfMeasureRepository.findByDescription("Teaspoon");
-        if(!uomTeaspoon.isPresent())
+        if (!uomTeaspoon.isPresent())
             throw new NotFoundException("UOM Teaspoon not found");
 
         Optional<UnitOfMeasure> uomTablespoon = unitOfMeasureRepository.findByDescription("Tablespoon");
-        if(!uomTablespoon.isPresent())
+        if (!uomTablespoon.isPresent())
             throw new NotFoundException("UOM Tablespoon not found");
 
         Optional<UnitOfMeasure> uomCup = unitOfMeasureRepository.findByDescription("Cup");
-        if(!uomCup.isPresent())
+        if (!uomCup.isPresent())
             throw new NotFoundException("UOM Cup not found");
 
         Optional<UnitOfMeasure> uomPinch = unitOfMeasureRepository.findByDescription("Pinch");
-        if(!uomPinch.isPresent())
+        if (!uomPinch.isPresent())
             throw new NotFoundException("UOM Pinch not found");
 
         Optional<UnitOfMeasure> uomOunce = unitOfMeasureRepository.findByDescription("Ounce");
-        if(!uomOunce.isPresent())
+        if (!uomOunce.isPresent())
             throw new NotFoundException("UOM Ounce not found");
 
         Optional<UnitOfMeasure> uomClove = unitOfMeasureRepository.findByDescription("Clove");
-        if(!uomClove.isPresent())
+        if (!uomClove.isPresent())
             throw new NotFoundException("UOM Clove not found");
 
         Optional<UnitOfMeasure> uomPint = unitOfMeasureRepository.findByDescription("Pint");
-        if(!uomPint.isPresent())
+        if (!uomPint.isPresent())
             throw new NotFoundException("UOM Pint not found");
 
         UnitOfMeasure teaspoon = uomTeaspoon.get();

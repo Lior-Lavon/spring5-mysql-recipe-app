@@ -2,7 +2,7 @@ package guru.springframework.models;
 
 import javax.persistence.Entity;
 
-public enum Difficulty{
+public enum Difficulty {
     SUPER_EASY,
     EASY,
     MODERATE,

@@ -83,7 +83,7 @@ public class IndexControllerTest {
         verify(recipeService, times(1)).getRecipes();
         // test that model.addAttribute() runs once, and:
         // addAttribute values are equal to "recipes" and anySet                          // capture what is pass into argumentCaptor
-        verify(model, times(1)).addAttribute( eq("recipes"), argumentCaptor.capture());
+        verify(model, times(1)).addAttribute(eq("recipes"), argumentCaptor.capture());
 
         // test the return content in argumentCaptor.capture()
         Set<Recipe> setInController = argumentCaptor.getValue();

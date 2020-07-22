@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class NotesCommand extends BaseEntity{
+public class NotesCommand extends BaseEntity {
     private String recipeNotes;
 }

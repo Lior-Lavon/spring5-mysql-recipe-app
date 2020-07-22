@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(exclude = {"recipe"})
 //@EqualsAndHashCode(callSuper = false)
 @Entity
-public class Ingredient extends BaseEntity{
+public class Ingredient extends BaseEntity {
 
     private String description;
     private BigDecimal amount;

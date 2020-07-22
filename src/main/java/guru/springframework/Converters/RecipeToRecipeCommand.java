@@ -31,7 +31,7 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
     @Nullable
     @Override
     public RecipeCommand convert(Recipe source) {
-        if(source==null)
+        if (source == null)
             return null;
 
         final RecipeCommand recipeCommand = new RecipeCommand();
@@ -48,12 +48,14 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
         recipeCommand.setNotes(notesToNotesCommand.convert(source.getNotes()));
 
         Set<CategoryCommand> categoryCommandSet = new HashSet<>();
-        recipeCommand.setCategories(categoryCommandSet);;
+        recipeCommand.setCategories(categoryCommandSet);
+        ;
 
         Set<IngredientCommand> ingredientCommandSet = new HashSet<>();
-        recipeCommand.setIngredients(ingredientCommandSet);;
+        recipeCommand.setIngredients(ingredientCommandSet);
+        ;
 
-        if(source.getCategories() != null && source.getCategories().size() > 0){
+        if (source.getCategories() != null && source.getCategories().size() > 0) {
 
             source.getCategories()
                     .forEach(category -> {
@@ -61,7 +63,7 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
                     });
         }
 
-        if(source.getIngredients() != null && source.getIngredients().size() > 0){
+        if (source.getIngredients() != null && source.getIngredients().size() > 0) {
             source.getIngredients()
                     .forEach(ingredient -> {
                         recipeCommand.getIngredients().add(ingredientToIngredientCommand.convert(ingredient));
