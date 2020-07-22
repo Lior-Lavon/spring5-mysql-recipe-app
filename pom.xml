@@ -104,7 +104,7 @@
         <finalName>docker-spring-boot</finalName>
     </build>
 
-    
+
     <repositories>
         <repository>
             <id>spring-snapshots</id>
@@ -143,4 +143,18 @@
         </pluginRepository>
     </pluginRepositories>
 
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>8d5dd260a5ab-releases</name>
+            <url>http://52.57.230.191:8081/artifactory/libs-release-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>8d5dd260a5ab-snapshots</name>
+            <url>http://52.57.230.191:8081/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    
 </project>
